@@ -1,1 +1,3 @@
-# TODO Add basic calc to integrate testing framework
+def add(x, y):
+    """Add two numbers together"""
+    return x + 7
