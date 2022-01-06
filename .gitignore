@@ -146,6 +146,9 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# VSCode
+.vscode
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 
