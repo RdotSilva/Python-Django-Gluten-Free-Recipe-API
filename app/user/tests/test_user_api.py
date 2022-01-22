@@ -37,7 +37,7 @@ class PublicUserApiTests(TestCase):
         """Test creating a user that already exists fails"""
         payload = {
             'email': 'test@test.com',
-            'password': 'testpass',
+            'password': 'pass',
             'name': 'Test Name'
         }
         create_user(**payload)
