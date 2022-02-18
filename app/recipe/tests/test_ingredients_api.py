@@ -32,7 +32,7 @@ class PrivateIngredientsAPITests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
-            'test@londonappdev.com',
-            'testpass'
+            'test@tester.com',
+            'testpass123'
         )
         self.client.force_authenticate(self.user)
