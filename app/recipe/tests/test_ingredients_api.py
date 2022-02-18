@@ -24,3 +24,15 @@ class PublicIngredientsApiTests(TestCase):
         res = self.client.get(INGREDIENTS_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class PrivateIngredientsAPITests(TestCase):
+    """Test ingredients can be retrieved by authorized user"""
+
+    def setUp(self):
+        self.client = APIClient()
+        self.user = get_user_model().objects.create_user(
+            'test@londonappdev.com',
+            'testpass'
+        )
+        self.client.force_authenticate(self.user)
