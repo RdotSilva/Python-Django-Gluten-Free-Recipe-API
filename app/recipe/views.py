@@ -14,6 +14,14 @@ class BaseRecipeAttrViewSet(viewsets.GenericViewSet,
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
+    def get_queryset(self):
+        """Return objects for the current authenticated user only"""
+        return self.queryset.filter(user=self.request.user).order_by('-name')
+
+    def perform_create(self, serializer):
+        """Create a new tag"""
+        serializer.save(user=self.request.user)
+
 
 class TagViewSet(viewsets.GenericViewSet,
                  mixins.ListModelMixin,
@@ -23,14 +31,6 @@ class TagViewSet(viewsets.GenericViewSet,
     permission_classes = (IsAuthenticated,)
     queryset = Tag.objects.all()
     serializer_class = serializers.TagSerializer
-
-    def get_queryset(self):
-        """Return objects for the current authenticated user only"""
-        return self.queryset.filter(user=self.request.user).order_by('-name')
-
-    def perform_create(self, serializer):
-        """Create a new tag"""
-        serializer.save(user=self.request.user)
 
 
 class IngredientViewSet(viewsets.GenericViewSet,
